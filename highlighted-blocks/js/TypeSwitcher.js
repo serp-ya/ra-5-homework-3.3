@@ -13,5 +13,8 @@ const TypeSwitcher = ({ item }) => {
           {Article}
         </PopularitySwitcher>
       );
+
+    default:
+      return null;
   }
 };
