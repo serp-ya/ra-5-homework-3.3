@@ -2,6 +2,8 @@
 
 const withDateTimePretty = (Component) => ({ date }) => {
   const timeDiff = getTimeDifference(new Date(date));
+  console.log('date', date);
+  console.log('timeDiff', timeDiff);
   let resultDate;
 
   if (timeDiff.days) {
@@ -9,7 +11,7 @@ const withDateTimePretty = (Component) => ({ date }) => {
   } else if (timeDiff.hours) {
     resultDate = `${timeDiff.hours} часов`;
   } else {
-    resultDate = `${timeDiff.minutes} минут ${timeDiff.seconds} секунд`;
+    resultDate = `${timeDiff.minutes} минут`;
   }
 
   return <Component date = {`${resultDate} назад`} />;
