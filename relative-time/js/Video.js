@@ -1,6 +1,6 @@
 'use strict';
 
-const DateTimePretty = withPrettyDate(DateTime, getTimeDifference, prettifyDateFunction);
+const DateTimePretty = withPrettyDate(DateTime);
 
 const Video = props => {
     return (
