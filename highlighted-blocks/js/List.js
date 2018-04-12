@@ -1,21 +1,36 @@
 'use strict';
 
-const List = props => {
-    return props.list.map(item => {
-        const { views } = item;
-        console.log('views', views);
-        switch (item.type) {
-            case 'video':
-                const PopularityVideo = popularitySwitcher(Video, New, Popular, views);
-                return (
-                    <PopularityVideo {...item} />
-                );
+class List extends React.Component {
 
-            case 'article':
-                const PopularityArticle = popularitySwitcher(Article, New, Popular, views);
-                return (
-                    <PopularityArticle {...item} />
-                );
-        }
-    });
-};
+    constructor(props) {
+        super(props);
+
+        this.components = this.props.list.map(item => {
+            const { views } = item;
+            
+            switch (item.type) {
+                case 'video': {
+                    const PopularityVideo = this.componentsSwitcher(Video)(views);
+                    return (
+                        <PopularityVideo {...item} />
+                    );
+                }
+                
+                case 'article': {
+                    const PopularityArticle = this.componentsSwitcher(Article)(views);
+                    return (
+                        <PopularityArticle {...item} />
+                    );
+                }
+            }
+        });
+    }
+    
+    componentsSwitcher (Component) {
+        return (views) => popularitySwitcher(Component, New, Popular, views);
+    }
+
+    render() {
+        return this.components;
+    };
+}
