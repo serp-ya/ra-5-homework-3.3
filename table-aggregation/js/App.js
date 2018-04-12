@@ -7,10 +7,10 @@ class App extends React.Component {
             list: []
         };
 
-        const { MonthTable, YearTable, SortTable } = this.props.tableComponents;
         const { decorator, monthsDictionary } = this.props;
-
         const carriedDecorator = (Conponent) => decorator(Conponent, monthsDictionary)
+
+        const { MonthTable, YearTable, SortTable } = this.props.tableComponents;
         
         this.MonthTableConverted = carriedDecorator(MonthTable);
         this.YearTableConverted = carriedDecorator(YearTable);
