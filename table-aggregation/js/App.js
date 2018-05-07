@@ -6,15 +6,6 @@ class App extends React.Component {
         this.state = {
             list: []
         };
-
-        const { decorator, monthsDictionary } = this.props;
-        const carriedDecorator = (Conponent) => decorator(Conponent, monthsDictionary)
-
-        const { MonthTable, YearTable, SortTable } = this.props.tableComponents;
-        
-        this.MonthTableConverted = carriedDecorator(MonthTable);
-        this.YearTableConverted = carriedDecorator(YearTable);
-        this.SortTableConverted = carriedDecorator(SortTable);
     }
 
     componentDidMount() {
@@ -24,18 +15,11 @@ class App extends React.Component {
     }
 
     render() {
-        const { list } = this.state;
-        const {
-            MonthTableConverted,
-            YearTableConverted,
-            SortTableConverted
-        } = this;
-
         return (
             <div id="app">
-                <MonthTableConverted list = {list} type = 'months' />
-                <YearTableConverted list = {list} type = 'years' />
-                <SortTableConverted list = {list} />
+                <MonthTable list={this.state.list} />
+                <YearTable list={this.state.list} />
+                <SortTable list={this.state.list} />
             </div>
         );
     }
