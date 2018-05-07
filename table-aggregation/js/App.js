@@ -1,5 +1,9 @@
 'use strict';
 
+const WrappedMonthTable = tableWrapper(MonthTable, 'month');
+const WrappedYearTable = tableWrapper(YearTable, 'year');
+const WrappedSortTable = tableWrapper(SortTable);
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -17,9 +21,9 @@ class App extends React.Component {
     render() {
         return (
             <div id="app">
-                <MonthTable list={this.state.list} />
-                <YearTable list={this.state.list} />
-                <SortTable list={this.state.list} />
+                <WrappedMonthTable list={this.state.list} />
+                <WrappedYearTable list={this.state.list} />
+                <WrappedSortTable list={this.state.list} />
             </div>
         );
     }
