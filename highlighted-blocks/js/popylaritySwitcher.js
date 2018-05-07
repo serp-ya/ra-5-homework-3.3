@@ -1,21 +1,29 @@
-const popularitySwitcher = (Component, NewComponent, PopularComponent, views) => {
+const popularitySwitcher = (WrappedComponent) => {
   return class PopularitySwitcher extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
     render() {
+      const {views} = this.props;
+
       if (views < 100) {
         return (
-          <NewComponent {...this.props} Component = {Component} />
+          <New>
+            <WrappedComponent {...this.props} />
+          </New>
         );
 
       } else if (views > 1000) {
         return (
-          <PopularComponent {...this.props} Component = {Component} />
+          <Popular>
+            <WrappedComponent {...this.props} />
+          </Popular>
         )
       }
 
       return (
-        <div style = {{margin: '20px'}}>
-          <Component {...this.props} />
-        </div>
+        <WrappedComponent {...this.props} />
       );
     }
   }
